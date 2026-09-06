@@ -1,0 +1,6 @@
+---
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+const whatsapp = 'https://wa.me/34685710444?text=Hola%20YaMeAlquilas%20%F0%9F%91%8B%20Quiero%20pedir%20presupuesto.';
+---
+<><a href={whatsapp} target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" class="fixed bottom-24 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-wa text-white shadow-[0_15px_35px_-10px_rgba(37,211,102,0.6)] transition-transform hover:scale-105 md:bottom-6 sm:right-6"><Icon name="chat" class="h-6 w-6" /></a><div class="fixed bottom-0 left-0 z-40 flex w-full gap-3 border-t border-ink/[0.08] bg-white px-4 py-3 md:hidden"><Button label="Llamar" href="tel:+34685710444" icon="phone" variant="dark" full size="sm" /><Button label="WhatsApp" href={whatsapp} icon="chat" variant="whatsapp" full size="sm" target="_blank" /></div></>

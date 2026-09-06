@@ -1,0 +1,6 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import TrustItem from '../TrustItem.astro';
+const items = [{ icon: 'clock', title: 'Entrega el mismo día', desc: 'Salvo portes especiales, que acordamos contigo de antemano.' }, { icon: 'users', title: 'Trato directo', desc: 'Hablas siempre con quien conduce, sin intermediarios ni centralitas.' }, { icon: 'pin', title: 'Toda España', desc: 'Cobertura nacional, saliendo desde Arganda del Rey, Madrid.' }, { icon: 'shield', title: '+10 años de experiencia', desc: 'Profesional del transporte de vehículos desde hace más de una década.' }, { icon: 'chat', title: 'Siempre informado', desc: 'Te avisamos por WhatsApp del estado de tu porte en todo momento.' }, { icon: 'star', title: 'Cuidado con lo delicado', desc: 'Atención especial para clásicos, competición y piezas de coleccionista.' }] as const;
+---
+<section class="bg-mist py-20 sm:py-28"><div class="mx-auto max-w-7xl px-5 sm:px-8"><SectionHeading eyebrow="Por qué elegirnos" title="Trato directo, cuidado real" align="center" /><div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{items.map((item) => <TrustItem {...item} />)}</div></div></section>

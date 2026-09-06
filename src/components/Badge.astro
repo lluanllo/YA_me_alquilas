@@ -1,0 +1,24 @@
+---
+interface Props {
+  label: string;
+  tone?: 'brand' | 'dark' | 'line';
+}
+
+const { label, tone = 'brand' } = Astro.props;
+
+const tones = {
+  brand: 'bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-100',
+  dark: 'bg-white/10 text-white ring-1 ring-inset ring-white/15',
+  line: 'bg-white text-ink ring-1 ring-inset ring-ink/10',
+};
+---
+
+<span
+  class:list={[
+    'inline-flex items-center gap-1.5 rounded-full px-3 py-1',
+    'font-body text-xs font-bold uppercase tracking-wide',
+    tones[tone],
+  ]}
+>
+  {label}
+</span>

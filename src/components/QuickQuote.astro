@@ -1,0 +1,17 @@
+---
+import Icon from './ui/Icon.astro';
+const options = [['Coche', 'car'], ['Moto', 'bike'], ['Clásico / competición', 'star'], ['Furgoneta en alquiler', 'van'], ['Remolque en alquiler', 'trailer'], ['Otro', 'route']] as const;
+---
+<div class="rounded-4xl bg-ink p-6 sm:p-8" data-reveal><p class="font-mono text-xs font-bold uppercase tracking-widest text-brand-400">Presupuesto rápido</p><h4 class="mt-2 font-display text-xl font-semibold uppercase tracking-tight text-white sm:text-2xl">¿Qué necesitas mover o alquilar?</h4><p class="mt-2 text-sm text-white/55">Elige una opción y te abrimos WhatsApp con el mensaje ya escrito.</p><div id="quoteOptions" class="no-scrollbar mt-6 flex gap-2.5 overflow-x-auto pb-1">{options.map(([label, icon]) => <button type="button" data-quote-option={label} class="quote-option inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-ink ring-1 ring-ink/10 transition-colors hover:text-brand-700 hover:ring-brand-500"><Icon name={icon} class="h-4 w-4" />{label}</button>)}</div></div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-quote-option]').forEach((button) => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('[data-quote-option]').forEach((item) => item.classList.remove('ring-brand-500', 'text-brand-700'));
+      button.classList.add('ring-brand-500', 'text-brand-700');
+      const option = button.dataset.quoteOption;
+      if (!option) return;
+      const message = encodeURIComponent(`Hola YaMeAlquilas 👋 Quiero pedir presupuesto para: ${option}.`);
+      window.open(`https://wa.me/34685710444?text=${message}`, '_blank', 'noopener');
+    });
+  });
+</script>

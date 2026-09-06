@@ -1,0 +1,13 @@
+---
+interface Props {
+  label: string;
+  tone?: 'light' | 'dark';
+}
+
+const { label, tone = 'light' } = Astro.props;
+---
+
+<div class="mb-4 flex items-center gap-2">
+  <span class="route-line-h w-8"></span>
+  <span class:list={['font-mono text-xs sm:text-sm uppercase tracking-[0.2em] font-bold', tone === 'dark' ? 'text-brand-400' : 'text-brand-600']}>{label}</span>
+</div>

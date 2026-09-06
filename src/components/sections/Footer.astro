@@ -1,0 +1,48 @@
+---
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+const whatsapp = 'https://wa.me/34685710444?text=Hola%20YaMeAlquilas%20%F0%9F%91%8B%20Quiero%20pedir%20presupuesto.';
+const links = [['#servicios', 'Servicios'], ['#nosotros', 'Nosotros'], ['#clientes', 'Clientes'], ['#contacto', 'Contacto']];
+---
+<footer class="bg-ink pt-16 pb-8">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-3">
+                    <img src="/favicon.svg" alt="YaMeAlquilas.com" class="h-11 w-11 rounded-2xl object-cover ring-1 ring-white/10" />
+                    <span class="font-display text-lg font-semibold uppercase tracking-tight text-white">
+                        YaMeAlquilas
+                        <span class="text-brand-400">.com</span>
+                    </span>
+                </div>
+                <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
+                    Remolques, vehículos con bola y portes. Transporte de vehículos y alquiler de furgonetas y remolques por toda España.
+                </p>
+            </div>
+            <div>
+                <p class="mb-4 font-mono text-xs font-bold uppercase tracking-widest text-brand-400">
+                    Navegación
+                </p>
+                <div class="flex flex-col gap-2.5">{links.map(([href, label]) => <a href={href} class="text-sm text-white/60 transition-colors hover:text-white">{label}</a>)}
+                </div>
+            </div>
+            <div>
+                <p class="mb-4 font-mono text-xs font-bold uppercase tracking-widest text-brand-400">Contacto</p>
+                <div class="flex flex-col gap-2.5">
+                    <a href="tel:+34685710444" class="text-sm text-white/60 hover:text-white">685 710 444</a>
+                    <a href={whatsapp} target="_blank" rel="noopener" class="text-sm text-white/60 hover:text-white">WhatsApp</a>
+                    <a href="https://www.instagram.com/yamealquilascom" target="_blank" rel="noopener" class="text-sm text-white/60 hover:text-white">@yamealquilascom</a>
+                    <span class="text-sm text-white/60">Arganda del Rey, Madrid</span>
+                </div>
+            </div>
+        </div>
+        <div class="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 sm:flex-row">
+            <p class="text-xs text-white/40">© <span id="year"></span> YaMeAlquilas.com — Todos los derechos reservados.</p>
+            <p class="font-mono text-xs text-white/40">Déjanos hacer tu porte, valóranos tú mism@</p>
+        </div>
+    </div>
+</footer>
+<script>
+    const yearElement = document.querySelector('#year');
+    if (yearElement) yearElement.textContent = String(new Date().getFullYear());
+</script>

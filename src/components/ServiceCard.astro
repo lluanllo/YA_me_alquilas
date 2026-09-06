@@ -1,0 +1,11 @@
+---
+import IconCircle from './ui/IconCircle.astro';
+import type { IconName } from '../types';
+interface Props { icon: IconName; title: string; desc: string; tone?: 'light' | 'dark' }
+const { icon, title, desc, tone = 'light' } = Astro.props;
+---
+<div class:list={['group flex flex-col gap-4 rounded-3xl p-6 sm:p-7 transition-all duration-300', tone === 'dark' ? 'bg-charcoal ring-1 ring-white/10 hover:ring-brand-500/50' : 'bg-white ring-1 ring-ink/[0.06] hover:ring-brand-200 hover:shadow-card']} data-reveal>
+  <IconCircle icon={icon} tone={tone === 'dark' ? 'dark' : 'brand'} size="md" />
+  <h3 class:list={['font-display text-lg sm:text-xl font-semibold uppercase tracking-tight', tone === 'dark' ? 'text-white' : 'text-ink']}>{title}</h3>
+  <p class:list={['text-sm sm:text-[15px] leading-relaxed', tone === 'dark' ? 'text-white/60' : 'text-slate/70']}>{desc}</p>
+</div>

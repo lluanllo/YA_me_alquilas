@@ -1,0 +1,10 @@
+---
+import IconCircle from './ui/IconCircle.astro';
+import type { IconName } from '../types';
+interface Props { icon: IconName; title: string; desc: string }
+const { icon, title, desc } = Astro.props;
+---
+<div class="flex items-start gap-4 rounded-3xl bg-white p-5 sm:p-6 ring-1 ring-ink/[0.06]" data-reveal>
+  <IconCircle icon={icon} tone="brand" size="sm" />
+  <div><h4 class="font-display text-base font-semibold uppercase tracking-tight text-ink">{title}</h4><p class="mt-1 text-sm leading-relaxed text-slate/70">{desc}</p></div>
+</div>

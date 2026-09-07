@@ -10,7 +10,7 @@ const links = [['#servicios', 'Servicios'], ['#nosotros', 'Nosotros'], ['#client
 
 <header class="sticky top-0 z-50 border-b border-ink/[0.06] bg-white/85 backdrop-blur-lg">
   <nav class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-    <a href="#top" class="flex items-center gap-3"><img src="/favicon.svg" alt="YaMeAlquilas.com" class="h-12 w-12 rounded-2xl object-cover ring-1 ring-ink/10" /><span class="hidden font-display text-lg font-semibold uppercase tracking-tight text-ink sm:block">YaMeAlquilas<span class="text-brand-500">.com</span></span></a>
+    <a href="#top" class="flex items-center gap-3" aria-label="Volver al inicio"><img src="/Logo/ya_me_alquilas_logo.webp" alt="Logo de YaMeAlquilas.com" width="96" height="96" decoding="async" class="h-12 w-12 rounded-2xl object-cover ring-1 ring-ink/10" /><span class="hidden font-display text-lg font-semibold uppercase tracking-tight text-ink sm:block">YaMeAlquilas<span class="text-brand-500">.com</span></span></a>
     <div class="hidden items-center gap-9 lg:flex">{links.map(([href, label]) => <a href={href} class="font-body text-sm font-semibold text-ink/70 transition-colors hover:text-brand-600">{label}</a>)}</div>
     <div class="hidden items-center gap-3 lg:flex"><Button label={phoneDisplay} href={phoneTel} icon="phone" variant="outline" size="sm" /><Button label="WhatsApp" href={whatsapp} icon="chat" variant="whatsapp" size="sm" target="_blank" /></div>
     <button id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" class="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink ring-1 ring-ink/10 lg:hidden"><Icon name="menu" class="h-5 w-5" /></button>

@@ -8,8 +8,10 @@ interface Props {
 
 const {
   title = 'YaMeAlquilas.com — Transporte de vehículos y alquiler de furgonetas y remolques',
-  description = 'Transporte profesional de vehículos y alquiler de furgonetas y remolques con bola en Arganda del Rey, Madrid. Cobertura en toda España.',
+  description = 'Transporte profesional de vehículos, coches, motos, clásicos, food trucks y maquinaria. Alquiler de furgonetas y remolques con bola desde Arganda del Rey, Madrid, con cobertura nacional.',
 } = Astro.props;
+const siteUrl = 'https://yamealquilas.com';
+const logoUrl = `${siteUrl}/Logo/ya_me_alquilas_logo.webp`;
 ---
 
 <!doctype html>
@@ -24,12 +26,63 @@ const {
 
     <title>{title}</title>
 
-    <meta
-      name="description"
-      content={description}
-    />
-
+    <meta name="description" content={description} />
+    <meta name="keywords" content="transporte de vehículos Madrid, transporte de coches España, transporte de motos, transporte de clásicos, alquiler de furgonetas, alquiler de remolques, remolques con bola, porte de food trucks, transporte desde Arganda del Rey" />
+    <meta name="author" content="YaMeAlquilas.com" />
+    <meta name="publisher" content="YaMeAlquilas.com" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="language" content="es" />
+    <meta name="geo.region" content="ES-MD" />
+    <meta name="geo.placename" content="Arganda del Rey, Madrid" />
+    <meta name="geo.position" content="40.3008;-3.4375" />
+    <meta name="ICBM" content="40.3008, -3.4375" />
     <meta name="theme-color" content="#0B0D10" />
+    <link rel="canonical" href={siteUrl} />
+    <link rel="icon" type="image/webp" href="/Logo/ya_me_alquilas_logo.webp" />
+    <link rel="apple-touch-icon" href="/Logo/ya_me_alquilas_logo.webp" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="YaMeAlquilas.com" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={logoUrl} />
+    <meta property="og:image:alt" content="YaMeAlquilas.com — transporte de vehículos y alquiler de furgonetas y remolques" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={logoUrl} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      '@id': `${siteUrl}/#business`,
+      name: 'YaMeAlquilas.com',
+      url: siteUrl,
+      logo: logoUrl,
+      image: logoUrl,
+      description,
+      telephone: '+34685710444',
+      priceRange: '€€',
+      currenciesAccepted: 'EUR',
+      areaServed: { '@type': 'Country', name: 'España' },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Arganda del Rey',
+        addressRegion: 'Madrid',
+        addressCountry: 'ES',
+      },
+      sameAs: ['https://www.instagram.com/yamealquilascom'],
+      knowsAbout: [
+        'Transporte de vehículos',
+        'Alquiler de furgonetas',
+        'Alquiler de remolques',
+        'Transporte de coches clásicos',
+        'Transporte de motos',
+      ],
+    })} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link

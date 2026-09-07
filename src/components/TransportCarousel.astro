@@ -1,0 +1,69 @@
+---
+import Icon from './ui/Icon.astro';
+
+const cards = [
+  { title: 'Porte de vehículos', description: 'Transportamos coches y vehículos entre particulares, compraventas y concesionarios.', image: '/image_galery/Porte_1.webp', alt: 'Transporte profesional de vehículos' },
+  { title: 'Food trucks y eventos', description: 'Llevamos food trucks y equipamiento de eventos a cualquier punto de España.', image: '/image_galery/Porte_2_foodtrack.webp', alt: 'Transporte de food truck a eventos' },
+  { title: 'Clásicos y deportivos', description: 'Cuidado especial para vehículos clásicos, deportivos y proyectos de colección.', image: '/image_galery/Porte_3_delorean.jpeg', alt: 'Transporte de coche clásico Delorean' },
+  { title: 'Transportes especiales', description: 'Soluciones a medida para vehículos singulares y portes que necesitan atención extra.', image: '/image_galery/Porte_4_figura.jpeg', alt: 'Transporte especial de vehículo' },
+  { title: 'Remolques con bola', description: 'Alquiler de remolques y vehículos preparados para que puedas hacer tu propio porte.', image: '/image_galery/remolque_para_bola.webp', alt: 'Remolque para vehículo con bola' },
+];
+---
+
+<div class="transport-carousel relative" data-carousel data-reveal>
+  <div class="overflow-hidden rounded-4xl">
+    <div class="carousel-track flex transition-transform duration-700 ease-out" data-carousel-track>
+      {cards.map((card, index) => (
+        <article class="carousel-slide min-w-full px-1" aria-hidden={index !== 0}>
+          <div class="grid overflow-hidden rounded-4xl bg-charcoal shadow-card md:grid-cols-2">
+            <img src={card.image} alt={card.alt} width="1200" height="800" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" class="h-64 w-full object-cover md:h-full" />
+            <div class="flex flex-col justify-center p-7 sm:p-10">
+              <p class="font-mono text-xs font-bold uppercase tracking-widest text-brand-400">Tipo de porte</p>
+              <h3 class="mt-3 font-display text-3xl font-semibold uppercase tracking-tight text-white">{card.title}</h3>
+              <p class="mt-4 text-base leading-relaxed text-white/65">{card.description}</p>
+              <a href="#contacto" class="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-600">Pedir presupuesto <Icon name="arrow" class="h-4 w-4" /></a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+  <button type="button" data-carousel-prev aria-label="Porte anterior" class="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-ink shadow-card transition hover:bg-white"><Icon name="arrow" class="h-5 w-5 rotate-180" /></button>
+  <button type="button" data-carousel-next aria-label="Siguiente porte" class="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-ink shadow-card transition hover:bg-white"><Icon name="arrow" class="h-5 w-5" /></button>
+  <div class="mt-5 flex justify-center gap-2" role="tablist" aria-label="Seleccionar tipo de porte">
+    {cards.map((card, index) => <button type="button" data-carousel-dot={index} role="tab" aria-label={`Mostrar ${card.title}`} aria-selected={index === 0} class:list={['h-2 rounded-full transition-all', index === 0 ? 'w-8 bg-brand-500' : 'w-2 bg-ink/20']} />)}
+  </div>
+</div>
+
+<script>
+  const carousel = document.querySelector<HTMLElement>('[data-carousel]');
+  if (carousel) {
+    const track = carousel.querySelector<HTMLElement>('[data-carousel-track]');
+    const slides = [...carousel.querySelectorAll<HTMLElement>('.carousel-slide')];
+    const dots = [...carousel.querySelectorAll<HTMLButtonElement>('[data-carousel-dot]')];
+    let current = 0;
+    let timer: number | undefined;
+    const update = (index: number) => {
+      current = (index + slides.length) % slides.length;
+      if (track) track.style.transform = `translateX(-${current * 100}%)`;
+      slides.forEach((slide, slideIndex) => slide.setAttribute('aria-hidden', String(slideIndex !== current)));
+      dots.forEach((dot, dotIndex) => {
+        dot.setAttribute('aria-selected', String(dotIndex === current));
+        dot.classList.toggle('w-8', dotIndex === current);
+        dot.classList.toggle('bg-brand-500', dotIndex === current);
+        dot.classList.toggle('w-2', dotIndex !== current);
+        dot.classList.toggle('bg-ink/20', dotIndex !== current);
+      });
+    };
+    const stop = () => { if (timer) window.clearInterval(timer); };
+    const start = () => { stop(); timer = window.setInterval(() => update(current + 1), 5000); };
+    carousel.querySelector('[data-carousel-prev]')?.addEventListener('click', () => { update(current - 1); start(); });
+    carousel.querySelector('[data-carousel-next]')?.addEventListener('click', () => { update(current + 1); start(); });
+    dots.forEach((dot, index) => dot.addEventListener('click', () => { update(index); start(); }));
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    carousel.addEventListener('focusin', stop);
+    carousel.addEventListener('focusout', start);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+  }
+</script>

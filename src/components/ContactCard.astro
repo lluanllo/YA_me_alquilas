@@ -5,7 +5,7 @@ import type { IconName } from '../types';
 interface Props { icon: IconName; title: string; value: string; desc: string; href: string; cta: string; variant?: 'primary' | 'dark' | 'outline' | 'outlineOnDark' | 'whatsapp' | 'ghost'; target?: string }
 const { icon, title, value, desc, href, cta, variant = 'outline', target } = Astro.props;
 ---
-<div class="flex flex-col gap-4 rounded-3xl bg-white p-6 sm:p-7 ring-1 ring-ink/[0.06] transition-all duration-300 hover:shadow-card" data-reveal>
+<div class="flex flex-col gap-4 rounded-3xl bg-white p-6 sm:p-7 ring-1 ring-ink/[0.06] transition-all duration-500 hover:-translate-y-2 hover:shadow-card" data-reveal="right">
   <div class="flex items-center gap-3"><IconCircle icon={icon} tone="brand" size="sm" /><div><h4 class="font-display text-base font-semibold uppercase tracking-tight text-ink">{title}</h4><p class="font-mono text-sm text-brand-700">{value}</p></div></div>
   <p class="text-sm leading-relaxed text-slate/70">{desc}</p>
   <Button label={cta} href={href} icon={icon} variant={variant} size="sm" full target={target} />

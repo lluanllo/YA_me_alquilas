@@ -2,4 +2,4 @@
 interface Props { zone: string; price: string; note: string }
 const { zone, price, note } = Astro.props;
 ---
-<div class="flex items-center justify-between gap-4 rounded-3xl bg-ink px-6 py-5" data-reveal><div><p class="font-body text-xs uppercase tracking-widest text-white/50">{zone}</p><p class="mt-1 font-mono text-2xl font-bold text-brand-400">{price}</p></div><p class="max-w-[9rem] text-right text-xs leading-relaxed text-white/45">{note}</p></div>
+<div class="flex items-center justify-between gap-4 rounded-3xl bg-ink px-6 py-5 transition-all duration-500 hover:-translate-y-1 hover:shadow-glow" data-reveal="scale"><div><p class="font-body text-xs uppercase tracking-widest text-white/50">{zone}</p><p class="mt-1 font-mono text-2xl font-bold text-brand-400">{price}</p></div><p class="max-w-[9rem] text-right text-xs leading-relaxed text-white/45">{note}</p></div>

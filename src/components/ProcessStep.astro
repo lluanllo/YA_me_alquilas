@@ -3,7 +3,7 @@ import WaypointPin from './ui/WaypointPin.astro';
 interface Props { number: number; title: string; desc: string; last?: boolean }
 const { number, title, desc, last = false } = Astro.props;
 ---
-<div class="relative flex gap-5">
+<div class="relative flex gap-5" data-reveal="right">
   <div class="flex flex-col items-center"><WaypointPin number={number} />{!last && <span class="route-line mt-2 mb-2 min-h-[2.5rem] flex-1"></span>}</div>
   <div class="pb-10"><h4 class="font-display text-lg sm:text-xl font-semibold uppercase tracking-tight text-white">{title}</h4><p class="mt-2 max-w-md text-sm sm:text-[15px] leading-relaxed text-white/60">{desc}</p></div>
 </div>

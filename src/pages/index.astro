@@ -42,4 +42,16 @@ import FloatingActions from '../components/sections/FloatingActions.astro';
   } else {
     revealElements.forEach((element) => element.classList.add('is-visible'));
   }
+
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const targetId = link.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const target = document.querySelector<HTMLElement>(targetId);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', targetId);
+    });
+  });
 </script>

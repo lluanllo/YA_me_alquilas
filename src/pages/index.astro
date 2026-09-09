@@ -9,6 +9,7 @@ import WhyUs from '../components/sections/WhyUs.astro';
 import Clients from '../components/sections/Clients.astro';
 import About from '../components/sections/About.astro';
 import Contact from '../components/sections/Contact.astro';
+import FAQ from '../components/sections/FAQ.astro';
 import Footer from '../components/sections/Footer.astro';
 import FloatingActions from '../components/sections/FloatingActions.astro';
 ---
@@ -22,12 +23,14 @@ import FloatingActions from '../components/sections/FloatingActions.astro';
   <WhyUs />
   <Clients />
   <About />
+  <FAQ />
   <Contact />
   <Footer />
   <FloatingActions />
 </Layout>
 
 <script>
+  document.documentElement.classList.add('reveal-ready');
   const revealElements = document.querySelectorAll<HTMLElement>('[data-reveal]');
   if ('IntersectionObserver' in window && revealElements.length) {
     const observer = new IntersectionObserver((entries) => {

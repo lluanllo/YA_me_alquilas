@@ -1,0 +1,10 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+const questions = [
+  ['¿Desde dónde salís?', 'Trabajamos desde Arganda del Rey, Madrid, con cobertura nacional.'],
+  ['¿Qué podéis transportar?', 'Coches, motos, clásicos, food trucks y otros vehículos o proyectos especiales.'],
+  ['¿También puedo alquilar material?', 'Sí. Disponemos de furgonetas, remolques para coches, remolques para motos y vehículos con bola.'],
+  ['¿Cómo pido presupuesto?', 'Escríbenos por WhatsApp con el tipo de vehículo, origen y destino. Te responderemos directamente.'],
+] as const;
+---
+<section class="bg-white py-20 sm:py-28"><div class="mx-auto max-w-4xl px-5 sm:px-8"><SectionHeading eyebrow="Preguntas frecuentes" title="Lo importante, antes de mover nada" subtitle="Si tu caso es distinto, cuéntanoslo y lo vemos contigo." align="center" /><div class="mt-12 divide-y divide-ink/10 border-y border-ink/10">{questions.map(([question, answer]) => <details class="group py-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-xl font-semibold uppercase text-ink sm:text-2xl"><span>{question}</span><span class="font-body text-2xl font-normal text-brand-500 transition-transform group-open:rotate-45" aria-hidden="true">+</span></summary><p class="max-w-2xl pr-10 pt-3 text-sm leading-relaxed text-slate/70 sm:text-base">{answer}</p></details>)}</div></div></section>

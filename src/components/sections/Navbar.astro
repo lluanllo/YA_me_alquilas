@@ -1,10 +1,11 @@
 ---
 import Icon from '../ui/Icon.astro';
 import Button from '../ui/Button.astro';
+import { site, whatsappLink } from '../../data/site';
 
-const phoneDisplay = '685 710 444';
-const phoneTel = 'tel:+34685710444';
-const whatsapp = 'https://wa.me/34685710444?text=Hola%20YaMeAlquilas%20%F0%9F%91%8B%20Quiero%20pedir%20presupuesto%20para%20un%20porte%20%2F%20alquiler.';
+const phoneDisplay = site.phone.display;
+const phoneTel = site.phone.tel;
+const whatsapp = whatsappLink();
 const links = [['#servicios', 'Servicios'], ['#nosotros', 'Nosotros'], ['#clientes', 'Clientes'], ['#contacto', 'Contacto']];
 ---
 
@@ -13,7 +14,7 @@ const links = [['#servicios', 'Servicios'], ['#nosotros', 'Nosotros'], ['#client
     <a href="#top" class="flex items-center gap-3" aria-label="Volver al inicio"><img src="/Logo/ya_me_alquilas_logo.webp" alt="Logo de YaMeAlquilas.com" width="96" height="96" decoding="async" class="h-12 w-12 rounded-2xl object-cover ring-1 ring-ink/10" /><span class="hidden font-display text-lg font-semibold uppercase tracking-tight text-ink sm:block">YaMeAlquilas<span class="text-brand-500">.com</span></span></a>
     <div class="hidden items-center gap-9 lg:flex">{links.map(([href, label]) => <a href={href} class="font-body text-sm font-semibold text-ink/70 transition-colors hover:text-brand-600">{label}</a>)}</div>
     <div class="hidden items-center gap-3 lg:flex"><Button label={phoneDisplay} href={phoneTel} icon="phone" variant="outline" size="sm" /><Button label="WhatsApp" href={whatsapp} icon="chat" variant="whatsapp" size="sm" target="_blank" /></div>
-    <button id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" class="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink ring-1 ring-ink/10 lg:hidden"><Icon name="menu" class="h-5 w-5" /></button>
+    <button id="menuToggle" type="button" aria-label="Abrir menú" aria-controls="mobileMenu" aria-expanded="false" class="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink ring-1 ring-ink/10 lg:hidden"><Icon name="menu" class="h-5 w-5" /></button>
   </nav>
   <div id="mobileMenu" class="hidden border-t border-ink/[0.06] bg-white px-5 pb-6 pt-4 lg:hidden">
     <div class="flex flex-col gap-1">{links.map(([href, label]) => <a href={href} class="mobile-link border-b border-ink/[0.05] py-2.5 font-body text-base font-semibold text-ink">{label}</a>)}</div>
@@ -25,16 +26,28 @@ const links = [['#servicios', 'Servicios'], ['#nosotros', 'Nosotros'], ['#client
   const menuToggle = document.querySelector<HTMLButtonElement>('#menuToggle');
   const mobileMenu = document.querySelector<HTMLElement>('#mobileMenu');
   const menuIcon = menuToggle?.querySelector('svg');
+  const setMenu = (open: boolean) => {
+    if (!menuToggle || !mobileMenu) return;
+    mobileMenu.classList.toggle('hidden', !open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    if (open) mobileMenu.querySelector<HTMLAnchorElement>('.mobile-link')?.focus();
+  };
   menuToggle?.addEventListener('click', () => {
     const isOpen = !mobileMenu?.classList.contains('hidden');
-    mobileMenu?.classList.toggle('hidden');
-    menuToggle.setAttribute('aria-expanded', String(!isOpen));
+    setMenu(!isOpen);
     if (menuIcon) menuIcon.innerHTML = isOpen
       ? '<path d="M4 7h16M4 12h16M4 17h16"/>'
       : '<path d="M6 6l12 12M18 6L6 18"/>';
   });
   mobileMenu?.querySelectorAll('.mobile-link').forEach((link) => link.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
-    menuToggle?.setAttribute('aria-expanded', 'false');
+    setMenu(false);
+    menuToggle?.focus();
   }));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !mobileMenu?.classList.contains('hidden')) {
+      setMenu(false);
+      menuToggle?.focus();
+    }
+  });
 </script>

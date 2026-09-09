@@ -2,7 +2,8 @@
 import Badge from '../Badge.astro';
 import Button from '../ui/Button.astro';
 import StatChip from '../ui/StatChip.astro';
-const whatsapp = 'https://wa.me/34685710444?text=Hola%20YaMeAlquilas%20%F0%9F%91%8B%20Quiero%20pedir%20presupuesto%20para%20un%20porte%20%2F%20alquiler.';
+import { site, whatsappLink } from '../../data/site';
+const whatsapp = whatsappLink();
 ---
 <section id="top" class="relative overflow-hidden bg-ink pt-14 pb-20 sm:pt-20 sm:pb-28">
   <div class="pointer-events-none absolute -right-32 top-1/4 h-[30rem] w-[30rem] rounded-full bg-brand-500/15 blur-3xl"></div>
@@ -10,13 +11,11 @@ const whatsapp = 'https://wa.me/34685710444?text=Hola%20YaMeAlquilas%20%F0%9F%91
   <div class="relative mx-auto grid min-h-[72vh] max-w-7xl items-center gap-12 px-5 sm:px-8 lg:min-h-[78vh] lg:grid-cols-[0.88fr_1.12fr] lg:gap-10">
     <div class="relative z-10 max-w-xl" data-reveal="left">
       <Badge label="📍 Arganda del Rey, Madrid · Cobertura nacional" tone="dark" />
-      <h1 class="mt-7 max-w-[11ch] font-display text-[3.35rem] font-semibold uppercase leading-[0.96] tracking-tight text-white sm:text-6xl md:text-[4.8rem] lg:text-[5.35rem]">
-        De Arganda del Rey<br />
-        a <span class="text-brand-400">cualquier punto</span><br />
-        de España
+      <h1 class="mt-7 max-w-[12ch] font-display text-[3.35rem] font-semibold uppercase leading-[0.96] tracking-tight text-white sm:text-6xl md:text-[4.8rem] lg:text-[5.35rem]">
+        Transporte de vehículos <span class="text-brand-400">y alquiler</span> en toda España
       </h1>
       <p class="mt-7 max-w-[34rem] font-body text-base leading-relaxed text-white/65 sm:text-lg">
-        Transporte profesional de vehículos y alquiler de furgonetas y remolques con bola. Más de 10 años moviendo coches, motos, clásicos y proyectos por toda España.
+        Desde {site.location.city}, Madrid: llevamos coches, motos, clásicos y proyectos especiales, o te damos la furgoneta y el remolque para que lo hagas tú.
       </p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <Button label="WhatsApp · Pedir presupuesto" href={whatsapp} icon="chat" variant="whatsapp" size="lg" target="_blank" />
@@ -25,7 +24,7 @@ const whatsapp = 'https://wa.me/34685710444?text=Hola%20YaMeAlquilas%20%F0%9F%91
       <div class="mt-10 grid max-w-lg grid-cols-3 gap-4 sm:gap-7">
         <StatChip value="+10" label="Años de experiencia" />
         <StatChip value="2" label="Personas, trato directo" />
-        <StatChip value="100%" label="Cobertura nacional" />
+        <StatChip value="ES" label="Cobertura nacional" />
       </div>
     </div>
 
